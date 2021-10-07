@@ -11,21 +11,18 @@ export default function useAuth(code) {
 
   useEffect(() => {
     axios // !SEARCH THIS
-      .post(
-        proxyUrl + "https://react-music-rush-server.herokuapp.com:3001/login",
-        {
-          code,
-        }
-      )
+      .post("https://react-music-rush-server.herokuapp.com/login", {
+        code,
+      })
       .then((res) => {
         // hola
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
-        window.history.pushState({}, null, "/"); // !SEARCH THIS
+        window.history.pushState({}, null, "/music-rush-client"); // !SEARCH THIS
       })
       .catch(() => {
-        window.location = "/";
+        window.location = "/music-rush-client";
       });
   }, [code]);
 
@@ -33,19 +30,15 @@ export default function useAuth(code) {
     if (!refreshToken || !expiresIn) return;
     const interval = setInterval(() => {
       axios // !SEARCH THIS
-        .post(
-          proxyUrl +
-            "https://react-music-rush-server.herokuapp.com:3001/refresh",
-          {
-            refreshToken,
-          }
-        )
+        .post("https://react-music-rush-server.herokuapp.com/refresh", {
+          refreshToken,
+        })
         .then((res) => {
           setRefreshToken(res.data.refreshToken);
           setExpiresIn(res.data.expiresIn);
         })
         .catch((err) => {
-          window.location = "/";
+          window.location = "/music-rush-client";
         });
     }, (expiresIn - 60) * 1000);
 
