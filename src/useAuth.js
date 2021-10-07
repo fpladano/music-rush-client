@@ -11,9 +11,12 @@ export default function useAuth(code) {
 
   useEffect(() => {
     axios // !SEARCH THIS
-      .post(proxyUrl + "https://react-music-rush-server.herokuapp.com/login", {
-        code,
-      })
+      .post(
+        proxyUrl + "https://react-music-rush-server.herokuapp.com:3001/login",
+        {
+          code,
+        }
+      )
       .then((res) => {
         // hola
         setAccessToken(res.data.accessToken);
@@ -31,7 +34,8 @@ export default function useAuth(code) {
     const interval = setInterval(() => {
       axios // !SEARCH THIS
         .post(
-          proxyUrl + "https://react-music-rush-server.herokuapp.com/refresh",
+          proxyUrl +
+            "https://react-music-rush-server.herokuapp.com:3001/refresh",
           {
             refreshToken,
           }
