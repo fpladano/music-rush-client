@@ -1,4 +1,5 @@
 {
+  "homepage": "http://fpladano.github.io/music-rush-client",
   "name": "react-music-rush",
   "version": "0.1.0",
   "private": true,
