@@ -190,10 +190,7 @@ export default function Dashboard({ code }) {
     <Container className="d-flex flex-column py-2" style={{ height: "100vh" }}>
       <div>{userProfile && <Navbar userInfo={userProfile} />}</div>
       {/* Track Info */}
-      <div
-        className="d-flex flex-grow-1 my-2 justify-content-center align-items-center"
-        style={{ overflow: "scroll" }}
-      >
+      <div className="d-flex flex-grow-1 my-2 justify-content-center align-items-center">
         {currentTrack && <SongInfo track={currentTrack} />}
       </div>
       {/* Add to Music Rush */}
